@@ -6,19 +6,18 @@ keep_vars = true
 [observability]
 enabled = true
 
-#[[d1_databases]]
-#binding = "db"			#d1数据库绑定名默认不可修改
-#database_name = ""		#d1数据库名字
-#database_id = ""		#d1数据库id
+[[d1_databases]]
+binding = "db"			#d1数据库绑定名默认不可修改
+database_name = "cloud-mail-db"		#d1数据库名字
+database_id = "69a0f619-3d35-4ac7-bb47-9258de749b3b"		#d1数据库id
 
-#[[kv_namespaces]]
-#binding = "kv"			#kv绑定名默认不可修改
-#id = ""					#kv数据库id
+[[kv_namespaces]]
+binding = "kv"			#kv绑定名默认不可修改
+id = "ec759a53bd91453a9b90730f0a8df41f"					#kv数据库id
 
 #[[r2_buckets]]
 #binding = "r2"			#r2对象存储绑定名默认不可修改
 #bucket_name = ""		#r2对象存储桶的名字
-
 #[[send_email]]
 #name = "email"			#CF发件, 配置后优先使用
 
@@ -33,7 +32,6 @@ run_worker_first = true
 
 [triggers]
 crons = ["0 * * * *"]	#每小时执行；resetDaySendCount 仅在 UTC 0 点生效
-
 
 [vars]
 #ai_model = ""			#ai模型,不填默认使用@cf/meta/llama-3.1-8b-instruct-fast
