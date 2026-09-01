@@ -257,6 +257,7 @@ const en = {
     emptySubjectMsg: 'Subject cannot be empty',
     emptyContentMsg: 'Content cannot be empty',
     noSeparateSendMsg: 'Separate sending does not support attachments yet',
+    keepAttachments: 'Keep attachments',
     sendSuccessMsg: 'Send successful',
     sendFailMsg: 'Send failed',
     saveDraftConfirm: 'Save draft?',

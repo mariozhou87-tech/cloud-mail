@@ -257,6 +257,7 @@ const zh = {
     emptySubjectMsg: '主题不能为空',
     emptyContentMsg: '邮件正文不能为空',
     noSeparateSendMsg: '分别发送暂时不支持附件',
+    keepAttachments: '保留附件',
     sendSuccessMsg: '发送成功',
     sendFailMsg: '发送失败',
     saveDraftConfirm: '是否保存草稿？',

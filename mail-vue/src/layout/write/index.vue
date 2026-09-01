@@ -52,6 +52,9 @@
           <div class="att-clear" @click="clearContent">
             <Icon icon="icon-park-outline:clear-format" width="24" height="24 "/>
           </div>
+          <el-checkbox v-model="keepAttachments" class="att-keep">
+            {{ $t('keepAttachments') }}
+          </el-checkbox>
           <div class="att-list">
             <div class="att-item" v-for="(item,index) in form.attachments" :key="index">
               <Icon v-bind="getIconByName(item.filename)"/>
@@ -132,6 +135,7 @@ const editor = ref({})
 const userStore = useUserStore();
 const show = ref(false);
 const percent = ref(0)
+const keepAttachments = ref(false)
 let percentMessage = null
 let sending = false
 const defValue = ref('')
@@ -378,7 +382,7 @@ async function sendEmail() {
     }
 
     show.value = false
-    resetForm();
+    resetForm(keepAttachments.value);
   }).catch((e) => {
     ElNotification({
       title: t('sendFailMsg'),
@@ -408,13 +412,14 @@ function addRecipientRecord() {
   writerStore.sendRecipientRecord = writerStore.sendRecipientRecord.slice(0, 500);
 }
 
-function resetForm() {
+function resetForm(preserveAttachments = false) {
+  const attachments = preserveAttachments ? [...form.attachments] : []
   form.receiveEmail = []
   form.subject = ''
   form.content = ''
   form.text = ''
   form.manyType = null
-  form.attachments = []
+  form.attachments = attachments
   form.sendType = ''
   form.emailId = 0
   form.draftId = null
@@ -424,6 +429,7 @@ function resetForm() {
   backReply.sendType = ''
   defValue.value = ''
   editor.value.clearEditor()
+  if (!preserveAttachments) keepAttachments.value = false
 }
 
 function change(content, text) {
@@ -704,7 +710,7 @@ function close() {
 
       .button-item {
         display: grid;
-        grid-template-columns: auto auto 1fr auto;
+        grid-template-columns: auto auto auto 1fr auto;
 
         .att-add {
           cursor: pointer;
@@ -713,6 +719,11 @@ function close() {
         .att-clear {
           cursor: pointer;
           margin-left: 10px;
+        }
+
+        .att-keep {
+          margin-left: 12px;
+          white-space: nowrap;
         }
 
         .att-list {
