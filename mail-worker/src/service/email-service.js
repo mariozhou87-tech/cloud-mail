@@ -23,6 +23,7 @@ import domainUtils from '../utils/domain-uitls';
 import account from "../entity/account";
 import { att } from '../entity/att';
 import telegramService from './telegram-service';
+import { addWebsiteSignature, SIGNATURE_EMAIL } from '../utils/signature-utils';
 
 const emailService = {
 
@@ -328,6 +329,12 @@ const emailService = {
 		const domain = emailUtils.getDomain(accountRow.email);
 		const resendToken = resendTokens[domain];
 		const useCloudflareEmail = !!c.env.email;
+
+		if (accountRow.email.toLowerCase() === SIGNATURE_EMAIL) {
+			const signedContent = addWebsiteSignature({ html, text, sendType });
+			html = signedContent.html;
+			text = signedContent.text;
+		}
 
 		//如果接收方存在站外邮箱，又没有发信服务
 		if (!useCloudflareEmail && !resendToken && !allInternal) {
@@ -1139,3 +1146,4 @@ const emailService = {
 };
 
 export default emailService;
+
