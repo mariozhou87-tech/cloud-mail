@@ -101,6 +101,7 @@ function initEditor() {
          --scrollbar-thumb-color: ${uiStore.dark ? '#8D9095' : '#A8ABB2'};
     }`,
     plugins: 'link image advlist lists  emoticons fullscreen  table preview code',
+    extended_valid_elements: 'div[data-sinomud-forwarded-content]',
     toolbar: 'bold emoticons forecolor backcolor italic fontsize | alignleft aligncenter alignright alignjustify | outdent indent |  bullist numlist | link image  | table code preview fullscreen',
     toolbar_mode: 'scrolling',
     font_size_formats: '8px 10px 12px 14px 16px 18px 24px 36px',
@@ -227,3 +228,4 @@ function destroyEditor() {
 }
 
 </style>
+
