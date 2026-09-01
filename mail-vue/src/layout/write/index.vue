@@ -412,6 +412,7 @@ function resetForm() {
   form.receiveEmail = []
   form.subject = ''
   form.content = ''
+  form.text = ''
   form.manyType = null
   form.attachments = []
   form.sendType = ''
@@ -421,6 +422,7 @@ function resetForm() {
   backReply.subject = ''
   backReply.receiveEmail = []
   backReply.sendType = ''
+  defValue.value = ''
   editor.value.clearEditor()
 }
 
@@ -445,7 +447,10 @@ function openForward(email) {
 
   setTimeout(() => {
     defValue.value = `
-      ${formatImage(email.content) || `<pre style="font-family: inherit;word-break: break-word;white-space: pre-wrap;margin: 0">${email.text}</pre>`}
+      <div><br></div>
+      <div data-sinomud-forwarded-content="true">
+        ${formatImage(email.content) || `<pre style="font-family: inherit;word-break: break-word;white-space: pre-wrap;margin: 0">${email.text}</pre>`}
+      </div>
     `
     open()
 
@@ -786,3 +791,4 @@ function close() {
   cursor: pointer;
 }
 </style>
+
